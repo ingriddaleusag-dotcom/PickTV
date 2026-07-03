@@ -12,17 +12,13 @@ jobs:
         with:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          parse_mode: HTML
+          parse_mode: Markdown
           message: |
-            <b>版本发布通知</b>
-
-            <b>${{ github.event.release.name || github.event.release.tag_name }}</b>
-            <code>${{ github.event.release.tag_name }}</code>
-
-            <b>项目仓库：</b><code>${{ github.repository }}</code>
-            <b>发布人员：</b>${{ github.actor }}
-            <b>发布时间：</b>${{ github.event.release.published_at }}
-
-            <b>查看详情：</b>
-            <a href="${{ github.event.release.html_url }}">Release 页面</a>
-            <a href="https://github.com/${{ github.repository }}">项目主页</a>
+            🚀 **新版本发布！**
+            仓库：`${{ github.repository }}`
+            版本标签：`${{ github.event.release.tag_name }}`
+            发布人：${{ github.actor }}
+            标题：${{ github.event.release.name }}
+            更新日志：
+            ${{ github.event.release.body }}
+            下载地址：${{ github.event.release.html_url }}
